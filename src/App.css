@@ -1,0 +1,115 @@
+*{
+  box-sizing: border-box;
+  direction: rtl;
+}
+.App {
+  width:300px;
+  height: 500px;
+  background-color: aquamarine;
+  margin : auto;
+}
+.picker {
+  display: flex;
+  flex-direction: column;
+}
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  
+}
+.d{
+  display: flex;
+  flex-direction: column;
+}
+.pick-day{
+  display:flex;
+  padding: 16px;
+  flex-wrap: wrap;
+}
+.pick-day li {
+  flex: 0 0 14.285714285714285714285714285714%;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  cursor: pointer;
+}
+.day-Names{
+  display: inline-block;
+  font-size: 1.1rem;
+}
+.pick{
+  position: relative;
+  background-color: brown;
+  color: black;
+  font-size: 32px;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+  top:100px;
+   /* overflow: hidden;  */
+ 
+}
+
+.pick li {
+  position: absolute;
+  top:0;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  text-align: center;
+  display: block;
+  opacity: .3;
+  transition: all .5s;
+  user-select: none;
+}
+li.pick-sl {
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 1;
+}
+li.pick-bfr {
+  transform: translateY(-100%);
+  opacity: .3;
+}
+li.pick-afr {
+  transform: translateY(100%);
+  opacity: .3;
+}
+.pick-arw {
+  position: absolute;
+  width: 25%;
+  top: 0;
+  display: block;
+  text-align: center;
+  margin:0 20px;
+  opacity: 0;
+  transition: all .5s;
+  height: 100%;
+  cursor: pointer;
+  z-index: 10;
+  user-select: none;
+}
+.pick-arw-l {
+  left: 0;
+}
+.pick-arw-r {
+  right: 0;
+}
+.pick-arw.next:after {
+  content: '>'
+}
+.pick-arw.before:after {
+  content: '<'
+}
+.pick:hover .pick-arw{
+  opacity: 0.4;
+}
+
+.pick .pick-arw-r:hover{
+  opacity: 1;
+}
+.pick .pick-arw-l:hover{
+  opacity: 1;
+}
