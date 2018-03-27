@@ -1,6 +1,5 @@
 import React from 'react';
 const dateParameterList = (props) => {
-    console.log(props)
     let reachTocurrent = false;
     const elmList = props.values.map((val,ind) => {
         if (ind === props.current) {
