@@ -2,28 +2,25 @@
   box-sizing: border-box;
   direction: rtl;
 }
-.App {
+div.DatePicker {
   width:300px;
   height: 500px;
-  background-color: aquamarine;
   margin : auto;
 }
-.picker {
+/* .picker {
   display: flex;
   flex-direction: column;
-}
-ul{
+} */
+/* ul{
   list-style: none;
   margin: 0;
   padding: 0;
-  
-  
-}
-.d{
+} */
+/* .d{
   display: flex;
   flex-direction: column;
-}
-.pick-day{
+} */
+/* .pick-day{
   display:flex;
   padding: 16px;
   flex-wrap: wrap;
@@ -34,14 +31,14 @@ ul{
   height: 36px;
   line-height: 36px;
   cursor: pointer;
-}
-.day-Names{
+} */
+/* .day-Names{
   display: inline-block;
   font-size: 1.1rem;
-}
-.pick{
+} */
+div.DatePicker .pick {
   position: relative;
-  background-color: brown;
+  background-color: white;
   color: black;
   font-size: 32px;
   height: 60px;
@@ -49,9 +46,16 @@ ul{
   cursor: pointer;
   top:100px;
    overflow: hidden; 
- 
 }
-
+div.DatePicker .pick ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+}
+div.DatePicker .pick.pick-m {
+  background-color: tomato;
+}
 .pick li {
   position: absolute;
   top:0;
@@ -84,8 +88,8 @@ li.pick-afr {
   display: block;
   text-align: center;
   margin:0 20px;
-  opacity: 0;
-  transition: all .5s;
+  transform: scale(0);
+  transition: all .2s;
   height: 100%;
   cursor: pointer;
   z-index: 10;
@@ -105,11 +109,17 @@ li.pick-afr {
 }
 .pick:hover .pick-arw{
   opacity: 0.4;
+  transform: scale(1)
 }
 
-.pick .pick-arw-r:hover{
+.pick .pick-arw-r:hover,.pick .pick-arw-l:hover{
   opacity: 1;
+  transform: scale(1.2)
 }
-.pick .pick-arw-l:hover{
-  opacity: 1;
+
+.pick .pick-arw-l2 {
+  transform: translatex(-100%)
+}
+.pick .pick-arw-r2 {
+  transform: translatex(100%)
 }

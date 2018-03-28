@@ -84,29 +84,33 @@ class DatePicker extends Component {
                 today: null,
                 current: 1,
                 values: null
-            }
+            },
+            doubleClickOnYear: false
         };
     };
     componentDidMount () {
         const yearValue = [];
-        for ( let i = this.state.year.min, ind=0; i <= this.state.year.max; i++ ) {
+        for ( let i = this.state.year.min, ind = 0; i <= this.state.year.max; i++ ) {
             yearValue.push( {
                 index: ind,
                 value: i
             } );
             ind++;
         };
-        const jalaliDate = new JalaliDate();
-        const currentMonth = jalaliDate.getMonth();
-        const currentYear = jalaliDate.getFullYear();
-        const currentYearIndex = yearValue.find( year => { 
+        const currentJalaliDate = new JalaliDate();
+        const currentMonth = currentJalaliDate.getMonth();
+        const currentYear = currentJalaliDate.getFullYear();
+        const currentYearIndex = yearValue.find( year => {
             return year.value === currentYear;
-        }).index;
-        const currentDay = jalaliDate.getDay();
-        const currentNameDay = jalaliDate.getDate();
+        } ).index;
+        const currentDay = currentJalaliDate.getDay();
+        const currentNameDay = currentJalaliDate.getDate();
         this.initializeDate( 'month', this.state.month.values, currentMonth );
         this.initializeDate( 'year', yearValue, currentYearIndex );
     };
+    getDaysInmonth = ( month, year ) => {
+        return [ 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, JalaliDate.isLeap( year ) ][ month ];
+    }
     initializeDate = ( type, values, current ) => {
         const { indexAfterChange, valuesAfterChange } = this.changeValuePlace( [ ...values ], current );
         this.setStateValues( type, valuesAfterChange, indexAfterChange );
@@ -144,7 +148,7 @@ class DatePicker extends Component {
         };
         return { indexAfterChange, valuesAfterChange };
     };
-    onChangeCurrentDate = ( type, values, currentValue, howManyChange ) => {
+    onClickToChangeCurrentDate = ( type, values, currentValue, howManyChange ) => {
         let index = currentValue + howManyChange;
         const maximumIndex = values.length - 1;
         const minimumIndex = 0;
@@ -152,6 +156,14 @@ class DatePicker extends Component {
         const newValue = [ ...values ];
         const { indexAfterChange, valuesAfterChange } = this.changeValuePlace( newValue, indexChecked );
         this.setStateValues( type, valuesAfterChange, indexAfterChange );
+    };
+    onDoubleClickOnYear = () => {
+        console.log(1)
+        this.setState( prevState => {
+            return {
+                doubleClickOnYear: !prevState.doubleClickOnYear
+            };
+        } );
     };
     render () {
         let month = null, year = null, day = null;
@@ -165,18 +177,20 @@ class DatePicker extends Component {
                     type="month"
                     values={ monthValues }
                     current={ currentMonth }
-                    changeCurrentDate={ ( type, values, currentValue, howManyChange ) => this.onChangeCurrentDate( type, values, currentValue, howManyChange ) } />
+                    changeCurrentDate={ ( type, values, currentValue, howManyChange ) => this.onClickToChangeCurrentDate( type, values, currentValue, howManyChange ) } />
             );
             year = (
                 <DatePickerElement
                     type="year"
                     values={ yearValues }
                     current={ currentYear }
-                    changeCurrentDate={ ( type, values, currentValue, howManyChange ) => this.onChangeCurrentDate( type, values, currentValue, howManyChange ) } />
+                    doubleClicked = {this.state.doubleClickOnYear}
+                    changeCurrentDate={ ( type, values, currentValue, howManyChange ) => this.onClickToChangeCurrentDate( type, values, currentValue, howManyChange ) }
+                    onDoubleClicked={ this.onDoubleClickOnYear } />
             );
         }
         return (
-            <div>
+            <div className="DatePicker">
                 { month }
                 { year }
 
