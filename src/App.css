@@ -41,7 +41,7 @@ div.DatePicker .pick {
   line-height: 60px;
   cursor: pointer;
   top:100px;
-   /* overflow: hidden;  */
+   overflow: hidden; 
 }
 div.DatePicker .pick.pick-y.pick-jump li {
  color: tan;

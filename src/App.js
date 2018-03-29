@@ -6,7 +6,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <DatePicker minYear={ 1350 }/>
+      <DatePicker minYear={ 1390 }/>
     );
   }
 }
