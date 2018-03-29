@@ -157,8 +157,8 @@ class DatePicker extends Component {
         const { indexAfterChange, valuesAfterChange } = this.changeValuePlace( newValue, indexChecked );
         this.setStateValues( type, valuesAfterChange, indexAfterChange );
     };
-    onDoubleClickOnYear = () => {
-        console.log(1)
+    onDoubleClickOnYear = (event) => {
+        if ( event.target.tagName !== 'LI' ) return;
         this.setState( prevState => {
             return {
                 doubleClickOnYear: !prevState.doubleClickOnYear

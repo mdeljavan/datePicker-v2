@@ -7,26 +7,28 @@ const dateParameter = ( props ) => {
     if ( props.type === 'year' ) {
         arwl2 = (
             <ChangeButton
-                classes={ 'pick-arw-l next ' + (props.doubleClicked ? 'pick-jump' : 'pick-arw-l2 ')  }
-            // type={props.type}
-            // clicked={props.changeCurrentDate}
-            // values={props.values}
-            // current={props.current}
-            // howManyChange={1}
+                classes={ 'pick-arw-l pick-arw-s2 next ' }
+                class='pick-i-l'
+                type={ props.type }
+                clicked={ props.changeCurrentDate }
+                values={ props.values }
+                current={ props.current }
+                howManyChange={ 10 }
             />
         );
         arwr2 = (
             <ChangeButton
-                classes='pick-arw-r pick-arw-r2 before'
-            // type={props.type}
-            // clicked={props.changeCurrentDate}
-            // values={props.values}
-            // current={props.current}
-            // howManyChange={-1} 
+                classes='pick-arw-r pick-arw-s2 before'
+                class='pick-i-r'
+                type={ props.type }
+                clicked={ props.changeCurrentDate }
+                values={ props.values }
+                current={ props.current }
+                howManyChange={ -10 }
             />
         );
     }
-    const classesPick = ['pick'];
+    const classesPick = [ 'pick' ];
     if ( props.type === 'year' ) {
         classesPick.push( 'pick-y' );
     } else if ( props.type === 'month' ) {
@@ -37,7 +39,7 @@ const dateParameter = ( props ) => {
     };
     return (
         <ul
-            className={classesPick.join(' ')}
+            className={ classesPick.join( ' ' ) }
             onDoubleClick={ props.type === 'year' ? props.onDoubleClicked : null }>
             <DateParameterList
                 values={ props.values }
@@ -45,7 +47,8 @@ const dateParameter = ( props ) => {
 
             />
             <ChangeButton
-                classes='pick-arw-l next'
+                classes='pick-arw-l pick-arw-s1 next'
+                class='pick-i-l'
                 type={ props.type }
                 clicked={ props.changeCurrentDate }
                 values={ props.values }
@@ -53,14 +56,15 @@ const dateParameter = ( props ) => {
                 howManyChange={ 1 }
             />
             <ChangeButton
-                classes='pick-arw-r before'
+                classes='pick-arw-r pick-arw-s1 before'
+                class='pick-i-r'
                 type={ props.type }
                 clicked={ props.changeCurrentDate }
                 values={ props.values }
                 current={ props.current }
                 howManyChange={ -1 } />
-            {/* { arwl2 }
-            { arwr2 } */}
+            { arwl2 }
+            { arwr2 }
         </ul>
 
     )
